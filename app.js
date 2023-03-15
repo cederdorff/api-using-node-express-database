@@ -45,6 +45,19 @@ app.get("/users", (request, response) => {
     });
 });
 
+// GET Route "/users"
+// get all users from database
+app.get("/products", (request, response) => {
+    const query = "SELECT * FROM products;"; // sql query to select all from the table users_data
+    mysqlConnection.query(query, (error, results, fields) => {
+        if (error) {
+            console.log(error);
+        } else {
+            response.json({ products: results });
+        }
+    });
+});
+
 // GET Route "/users/:id"
 // get one user from database by given id
 app.get("/users/:id", (request, response) => {
